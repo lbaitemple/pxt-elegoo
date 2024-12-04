@@ -1,4 +1,4 @@
-namespace coco {
+namespace ELEGOO {
     declare interface Math {
         floor(x: number): number;
     }

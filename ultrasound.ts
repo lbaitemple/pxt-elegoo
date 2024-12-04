@@ -1,6 +1,4 @@
-// Add your code here
-
-namespace coco {
+namespace ELEGOO {
     let echoPin: DigitalInOutPin = pins.D0;
     let trigPin: DigitalInOutPin = pins.D1;
 

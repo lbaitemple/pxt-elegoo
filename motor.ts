@@ -1,6 +1,6 @@
 // Add your code here
 
-namespace coco {
+namespace ELEGOO {
 
     /**
      * Use this file to define custom functions and blocks.
@@ -34,7 +34,7 @@ namespace coco {
     //% power.max=100
     //% subcategory=Motor
     export function moveForward(power: number): void {
-        let realPower =  (1023 / 100 * power);
+        let realPower = (1023 / 100 * power);
         leftForward.digitalWrite(false);
         leftBackward.digitalWrite(true);
         rightForward.digitalWrite(false);
