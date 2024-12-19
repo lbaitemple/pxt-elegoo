@@ -15,8 +15,8 @@ namespace ELEGOO {
     }
 
     //% block="Ultrasound at trig $trig and echo $echo "
-    //% trig.defl=pins.D1
-    //% echo.defl=pins.D0
+    //% trig.defl=pins.A4
+    //% echo.defl=pins.A5
     //% subcategory=Ultrasound
     export function HCSR04(trig: DigitalInOutPin, echo: DigitalInOutPin): number {
         echoPin = echo;
