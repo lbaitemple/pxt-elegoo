@@ -51,8 +51,8 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveBackward(power: number): void {
         let realPower = (1023 / 100 * power);
-        IN1.digitalWrite(true);
-        IN2.digitalWrite(false);
+        IN1.digitalWrite(false);
+        IN2.digitalWrite(true);
         IN3.digitalWrite(true);
         IN4.digitalWrite(false);
         ENA.analogWrite(realPower);
@@ -67,10 +67,10 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveLeft(power: number): void {
         let realPower = (1023 / 100 * power);
-        IN1.digitalWrite(true);
-        IN2.digitalWrite(false);
+        IN1.digitalWrite(false);
+        IN2.digitalWrite(true);
         IN3.digitalWrite(false);
-        IN4.digitalWrite(false);
+        IN4.digitalWrite(true);
         ENA.analogWrite(realPower);
     }
 
@@ -81,10 +81,10 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveRight(power: number): void {
         let realPower = (1023 / 100 * power);
-        IN1.digitalWrite(false);
+        IN1.digitalWrite(true);
         IN2.digitalWrite(false);
-        IN3.digitalWrite(true);
-        IN4.digitalWrite(false);
+        IN3.digitalWrite(false);
+        IN4.digitalWrite(true);
         ENB.analogWrite(realPower);
     }
 
