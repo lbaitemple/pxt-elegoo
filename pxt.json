@@ -13,9 +13,7 @@
         "oled.ts",
         "ultrasound.ts"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "public": true,
     "targetVersions": {
         "target": "0.15.66",
