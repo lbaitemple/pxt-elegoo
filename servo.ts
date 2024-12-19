@@ -2,7 +2,7 @@ namespace ELEGOO {
     let servoPin: AnalogInOutPin = pins.D3;
 
 
-    //% block="Servo turn $angle "
+    //% block="Servo turn $angle default connect pin $servo "
     //% servo.defl=pins.A4
     //% angle.defl=90
     //% subcategory=Servo
