@@ -12,7 +12,8 @@
         "main.ts",
         "oled.ts",
         "ultrasound.ts",
-        "servo.ts"
+        "servo.ts",
+        "light.ts"
     ],
     "testFiles": [],
     "public": true,
