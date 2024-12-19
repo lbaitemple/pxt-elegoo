@@ -9,7 +9,7 @@
 //  D9  -   Right motor PWM
 //  D7 - Right motor direction or (https://roboticsbackend.com/arduino-uno-pins-a-complete-practical-guide/)
 //  D13 is for onboard LED
-//  MISO (D12) - coco_BUTTON pushbutton
+//  MISO (D12) - ELEGOO_BUTTON pushbutton
 // 
 const enum ELEGOOMotor {
     //% block="left"
@@ -30,7 +30,7 @@ const enum ELEGOOLED {
     OFF = 0,
 }
 
-const enum cocoNotes {
+const enum ELEGOONotes {
     //% block="ON"
     ON = 1,
     //% block="OFF"
@@ -93,7 +93,7 @@ namespace ELEGOO {
     * @param is the preferred_heading angle to orient to.
     * This function returns an array of 2 numbers which are speeds for left and right motor
     */
-    //% blockId="coco_motor_run" block="run motor %motor | at speed %speed \\%"
+    //% blockId="ELEGOO_motor_run" block="run motor %motor | at speed %speed \\%"
     //% speed.min=-100
     //% speed.max=100
     //% weight=90
@@ -105,7 +105,7 @@ namespace ELEGOO {
      * @param motor motor, eg: ELEGOOMotor.left
      */
     //% subcategory=Motors
-    //% blockId="coco_motor_stop" block="stop motor %motor"
+    //% blockId="ELEGOO_motor_stop" block="stop motor %motor"
     //% weight=89
     export function stopMotor(motor: ELEGOOMotor): void {
         if (motor == ELEGOOMotor.left) {
@@ -174,7 +174,7 @@ namespace ELEGOO {
      * @param rotation rotation of the motor, eg: ELEGOOMotorRotation.Forward
      */
     //% subcategory=Motors
-    //% blockId=coco_motor_set_rotation block="set motor %motor rotation | to %rotation"
+    //% blockId=ELEGOO_motor_set_rotation block="set motor %motor rotation | to %rotation"
     //% weight=88
     export function setMotorRotation(
         motor: ELEGOOMotor,
@@ -205,18 +205,18 @@ namespace ELEGOO {
     }
 
 
-    //% blockId="coco_servo" block="Run servo %state"
+    //% blockId="ELEGOO_servo" block="Run servo %state"
     //% weight=90
     //% subcategory=Servo
-    export function setcocoServo(state: number): void {
+    export function setELEGOOServo(state: number): void {
         pins.D3.analogWrite(state);
     }
 
 
-    //% blockId="coco_button" block="get button %cocoPushButtonState"
+    //% blockId="ELEGOO_button" block="get button %ELEGOOPushButtonState"
     //% weight=90
     //% subcategory=Button
-    export function getcocoButtonState(): boolean {
+    export function getELEGOOButtonState(): boolean {
         return input.buttonD12.isPressed();
     }
 

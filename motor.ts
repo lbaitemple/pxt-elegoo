@@ -21,12 +21,12 @@ namespace ELEGOO {
         Stop = 4
     }
 
-    let leftForward: DigitalInOutPin = pins.D8;
-    let leftBackward: DigitalInOutPin = pins.D7;
-    let rightForward: DigitalInOutPin = pins.D4;
-    let rightBackward: DigitalInOutPin = pins.D2;
-    let leftPowerPin: AnalogInOutPin = pins.D9;
-    let rightPowerPin: AnalogInOutPin = pins.D5;
+    let IN1: DigitalInOutPin = pins.D7;
+    let IN2: DigitalInOutPin = pins.D8;
+    let IN3: DigitalInOutPin = pins.D9;
+    let IN4: DigitalInOutPin = pins.D11;
+    let ENA: AnalogInOutPin = pins.D6;
+    let ENB: AnalogInOutPin = pins.D5;
 
     //% block="Move Forward at speed $power "
     //% power.defl= 512
@@ -35,12 +35,12 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveForward(power: number): void {
         let realPower = (1023 / 100 * power);
-        leftForward.digitalWrite(false);
-        leftBackward.digitalWrite(true);
-        rightForward.digitalWrite(false);
-        rightBackward.digitalWrite(true);
-        leftPowerPin.analogWrite(realPower);
-        rightPowerPin.analogWrite(realPower);
+        IN1.digitalWrite(true);
+        IN2.digitalWrite(false);
+        IN3.digitalWrite(false);
+        IN4.digitalWrite(true);
+        ENA.analogWrite(realPower);
+        ENB.analogWrite(realPower);
 
     }
 
@@ -51,12 +51,12 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveBackward(power: number): void {
         let realPower = (1023 / 100 * power);
-        leftForward.digitalWrite(true);
-        leftBackward.digitalWrite(false);
-        rightForward.digitalWrite(true);
-        rightBackward.digitalWrite(false);
-        leftPowerPin.analogWrite(realPower);
-        rightPowerPin.analogWrite(realPower);
+        IN1.digitalWrite(true);
+        IN2.digitalWrite(false);
+        IN3.digitalWrite(true);
+        IN4.digitalWrite(false);
+        ENA.analogWrite(realPower);
+        ENB.analogWrite(realPower);
 
     }
 
@@ -67,11 +67,11 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveLeft(power: number): void {
         let realPower = (1023 / 100 * power);
-        leftForward.digitalWrite(true);
-        leftBackward.digitalWrite(false);
-        rightForward.digitalWrite(false);
-        rightBackward.digitalWrite(false);
-        leftPowerPin.analogWrite(realPower);
+        IN1.digitalWrite(true);
+        IN2.digitalWrite(false);
+        IN3.digitalWrite(false);
+        IN4.digitalWrite(false);
+        ENA.analogWrite(realPower);
     }
 
     //% block="Move Right at speed $power "
@@ -81,22 +81,22 @@ namespace ELEGOO {
     //% subcategory=Motor
     export function moveRight(power: number): void {
         let realPower = (1023 / 100 * power);
-        leftForward.digitalWrite(false);
-        leftBackward.digitalWrite(false);
-        rightForward.digitalWrite(true);
-        rightBackward.digitalWrite(false);
-        rightPowerPin.analogWrite(realPower);
+        IN1.digitalWrite(false);
+        IN2.digitalWrite(false);
+        IN3.digitalWrite(true);
+        IN4.digitalWrite(false);
+        ENB.analogWrite(realPower);
     }
 
     //% block="Stop "
     //% subcategory=Motor
     export function Stop(): void {
-        leftForward.digitalWrite(false);
-        leftBackward.digitalWrite(false);
-        rightForward.digitalWrite(false);
-        rightBackward.digitalWrite(false);
-        rightPowerPin.analogWrite(0);
-        leftPowerPin.analogWrite(0);
+        IN1.digitalWrite(false);
+        IN2.digitalWrite(false);
+        IN3.digitalWrite(false);
+        IN4.digitalWrite(false);
+        ENB.analogWrite(0);
+        ENA.analogWrite(0);
     }
 
 }
