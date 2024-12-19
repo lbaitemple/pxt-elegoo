@@ -9,11 +9,11 @@
         "README.md",
         "main.blocks",
         "motor.ts",
-        "main.ts",
         "oled.ts",
         "ultrasound.ts",
         "servo.ts",
-        "light.ts"
+        "light.ts",
+        "main.ts"
     ],
     "testFiles": [],
     "public": true,
