@@ -1,15 +1,14 @@
-// Add your code here
+namespace ELEGOO {
+    let servoPin: AnalogInOutPin = pins.D3;
 
-namespace coco {
-    let severoPin: AnalogInOutPin = pins.D3;
 
-    //% block="Set severo $severoPin at $pos "
-    //% severoPin.defl=pins.D3
-    //% pos.min=-99
-    //% pos.max=99
+    //% block="Servo turn $angle "
+    //% servo.defl=pins.A4
+    //% angle.defl=90
     //% subcategory=Servo
+    export function turn(servo: AnalogInOutPin, angle: number): void {
+        servoPin = servo;
+        servoPin.analogWrite(angle);
 
-    export function setPos(severoPin: AnalogInOutPin, pos: number): void {
-        severoPin.analogWrite(pos);
     }
 }

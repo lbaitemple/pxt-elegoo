@@ -11,7 +11,8 @@
         "motor.ts",
         "main.ts",
         "oled.ts",
-        "ultrasound.ts"
+        "ultrasound.ts",
+        "servo.ts"
     ],
     "testFiles": [],
     "public": true,
