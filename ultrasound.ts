@@ -1,6 +1,6 @@
 namespace ELEGOO {
-    let echoPin: DigitalInOutPin = pins.D0;
-    let trigPin: DigitalInOutPin = pins.D1;
+    let echoPin: DigitalInOutPin = pins.A4;
+    let trigPin: DigitalInOutPin = pins.A5;
 
     function calculateDistance(): number {
         trigPin.digitalWrite(false);
