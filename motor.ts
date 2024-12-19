@@ -30,8 +30,8 @@ namespace ELEGOO {
 
     //% block="Use version $ver "
     //% ver.defl= 3
-    //% power.min=0
-    //% power.max=4
+    //% ver.min=1
+    //% ver.max=4
     //% subcategory=Motor
     export function userversion(ver: number): void {
         switch (ver) {
