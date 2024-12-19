@@ -25,8 +25,47 @@ namespace ELEGOO {
     let IN2: DigitalInOutPin = pins.D8;
     let IN3: DigitalInOutPin = pins.D9;
     let IN4: DigitalInOutPin = pins.D11;
-    let ENA: AnalogInOutPin = pins.D6;
-    let ENB: AnalogInOutPin = pins.D5;
+    let ENA: AnalogInOutPin = pins.D5;
+    let ENB: AnalogInOutPin = pins.D6;
+
+    //% block="Use version $ver "
+    //% ver.defl= 3
+    //% power.min=0
+    //% power.max=4
+    //% subcategory=Motor
+    export function userversion(ver: number): void {
+        switch (ver) {
+            case 1:
+                IN1 = pins.D9;
+                IN2 = pins.D8;
+                IN3 = pins.D7;
+                IN4 = pins.D6;
+                ENA = pins.D10;
+                ENB = pins.D5;
+                break;
+            case 2:
+                IN1 = pins.D6;
+                IN2 = pins.D7;
+                IN3 = pins.D8;
+                IN4 = pins.D9;
+                ENA = pins.D5;
+                ENB = pins.D11;
+                break;
+            case 2:
+                IN1 = pins.D9;
+                IN2 = pins.D8;
+                IN3 = pins.D7;
+                IN4 = pins.D6;
+                ENA = pins.D10;
+                ENB = pins.D5;
+                break;
+            default:
+                break;
+        }
+        
+
+    }
+
 
     //% block="Move Forward at speed $power "
     //% power.defl= 512
