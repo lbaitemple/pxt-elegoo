@@ -124,18 +124,25 @@ namespace ir_VS1838 {
         }
     }
 
-    function enableIrMarkSpaceDetection(pin: DigitalPin) {
-        pins.setPull(pin, PinPullMode.PullNone);
+    function enableIrMarkSpaceDetection(pin: DigitalInOutPin) {
+        //pins.setPull(pin, PinPullMode.PullNone);
+        pin.setPull(PinPullMode.PullNone)
 
         let mark = 0;
         let space = 0;
 
-        pins.onPulsed(pin, PulseValue.Low, () => {
+       // pin.onPulsed(PulseValue.Low, ()) {
+//        pins.onPulsed(pin, PulseValue.Low, () => {
+            // HIGH, see https://github.com/microsoft/pxt-microbit/issues/1416
+         //   mark = pins.pulseDuration();
+        //});
+
+        pin.onPulsed(PulseValue.Low, () => {
             // HIGH, see https://github.com/microsoft/pxt-microbit/issues/1416
             mark = pins.pulseDuration();
         });
 
-        pins.onPulsed(pin, PulseValue.High, () => {
+        pin.onPulsed(PulseValue.High, () => {
             // LOW
             space = pins.pulseDuration();
             const status = decode(mark + space);
@@ -159,7 +166,7 @@ namespace ir_VS1838 {
     //% pin.fieldOptions.tooltips=0
     //% weight=90
     export function connectIrReceiver(
-        pin: DigitalPin,
+        pin: DigitalInOutPin,
     ): void {
         if (irState) {
             return;
@@ -182,13 +189,14 @@ namespace ir_VS1838 {
 
         control.onEvent(
             MICROBIT_IR_NEC,
-            EventBusValue.MICROBIT_EVT_ANY,
+            0,
             () => {
                 const irEvent = control.eventValue();
+                
 
                 // Refresh repeat timer
                 if (irEvent === IR_DATAGRAM || irEvent === IR_REPEAT) {
-                    repeatTimeout = input.runningTime() + REPEAT_TIMEOUT_MS;
+                    repeatTimeout = control.millis() + REPEAT_TIMEOUT_MS;
                 }
 
                 if (irEvent === IR_DATAGRAM) {
@@ -216,13 +224,13 @@ namespace ir_VS1838 {
             }
         );
 
-        control.inBackground(() => {
+        control.runInBackground(() => {
             while (true) {
                 if (activeCommand === -1) {
                     // sleep to save CPU cylces
                     basic.pause(2 * REPEAT_TIMEOUT_MS);
                 } else {
-                    const now = input.runningTime();
+                    const now = control.millis();
                     if (now > repeatTimeout) {
                         // repeat timed out
                         control.raiseEvent(
@@ -251,7 +259,7 @@ namespace ir_VS1838 {
     export function onIrDatagram(handler: () => void) {
         control.onEvent(
             MICROBIT_IR_DATAGRAM,
-            EventBusValue.MICROBIT_EVT_ANY,
+            0,
             () => {
                 handler();
             }
@@ -320,7 +328,7 @@ namespace ir_VS1838 {
             action === IrButtonAction.Pressed
                 ? MICROBIT_IR_BUTTON_PRESSED_ID
                 : MICROBIT_IR_BUTTON_RELEASED_ID,
-            button === IrButton.Any ? EventBusValue.MICROBIT_EVT_ANY : button,
+            button === IrButton.Any ? 0 : button,
             () => {
                 handler();
             }
