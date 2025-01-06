@@ -187,21 +187,17 @@ namespace ir_VS1838 {
         let repeatTimeout = 0;
         const REPEAT_TIMEOUT_MS = 120;
 
-        control.onEvent(
-            MICROBIT_IR_NEC,
-            0,
-            () => {
-                const irEvent = control.eventValue();
+        control.onEvent(MICROBIT_IR_NEC,
+            IR_DATAGRAM || IR_REPEAT, () =>{
+                repeatTimeout = control.millis() + REPEAT_TIMEOUT_MS;
+            }
+        );
+
+        control.onEvent(MICROBIT_IR_NEC,
+            IR_DATAGRAM , () => {
                 
-
-                // Refresh repeat timer
-                if (irEvent === IR_DATAGRAM || irEvent === IR_REPEAT) {
-                    repeatTimeout = control.millis() + REPEAT_TIMEOUT_MS;
-                }
-
-                if (irEvent === IR_DATAGRAM) {
-                    irState.hasNewDatagram = true;
-                    control.raiseEvent(MICROBIT_IR_DATAGRAM, 0);
+            irState.hasNewDatagram = true;
+            control.raiseEvent(MICROBIT_IR_DATAGRAM, 0);
 
                     const newCommand = irState.commandSectionBits >> 8;
 
@@ -220,9 +216,9 @@ namespace ir_VS1838 {
                             newCommand
                         );
                     }
-                }
-            }
+                }            
         );
+
 
         control.runInBackground(() => {
             while (true) {
