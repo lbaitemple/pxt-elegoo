@@ -9,11 +9,12 @@
         "README.md",
         "main.blocks",
         "motor.ts",
+        "main.ts",
         "oled.ts",
         "ultrasound.ts",
         "servo.ts",
         "light.ts",
-        "main.ts"
+        "ir-vs1838.ts"
     ],
     "testFiles": [],
     "public": true,
